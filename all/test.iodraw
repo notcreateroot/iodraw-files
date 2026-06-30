@@ -1,0 +1,86 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="citrix-topology-real-stencil" name="Citrix拓扑(官方原生模具 无方框)">
+    <mxGraphModel dx="1750" dy="980" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- 1. Delivery Controller DDC 调度控制器 Citrix原生模具 -->
+        <mxCell id="ddc" value="Delivery Controller\nDDC调度控制器" style="mxstencil=Citrix;stencil=Delivery Controller;whiteSpace=wrap;html=1;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="395" y="60" width="175" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- 2. StoreFront 店面服务器 Citrix原生模具 -->
+        <mxCell id="sf" value="StoreFront\n应用门户店面" style="mxstencil=Citrix;stencil=StoreFront;whiteSpace=wrap;html=1;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="615" y="60" width="160" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- 3. VDA 虚拟桌面代理（你截图红框选中同款图标） -->
+        <mxCell id="vda1" value="VDA 虚拟桌面1" style="mxstencil=Citrix;stencil=VDA;whiteSpace=wrap;html=1;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="355" y="300" width="152" height="82" as="geometry"/>
+        </mxCell>
+        <mxCell id="vda2" value="VDA 虚拟桌面2" style="mxstencil=Citrix;stencil=VDA;whiteSpace=wrap;html=1;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="518" y="300" width="152" height="82" as="geometry"/>
+        </mxCell>
+
+        <!-- 4. NetScaler Gateway 网关 Citrix原生模具 -->
+        <mxCell id="nsg" value="NetScaler Gateway\n接入网关" style="mxstencil=Citrix;stencil=NetScaler Gateway;whiteSpace=wrap;html=1;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="815" y="300" width="165" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- 5. Citrix Cloud Connector 云连接器 -->
+        <mxCell id="connector" value="Citrix Cloud Connector\n云连接器" style="mxstencil=Citrix;stencil=Cloud Connector;whiteSpace=wrap;html=1;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="790" y="65" width="155" height="85" as="geometry"/>
+        </mxCell>
+
+        <!-- 6. Citrix Workspace 终端客户端（图库独有图标） -->
+        <mxCell id="workspace" value="Citrix Workspace\n用户终端客户端" style="mxstencil=Citrix;stencil=Workspace App;whiteSpace=wrap;html=1;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="795" y="500" width="158" height="84" as="geometry"/>
+        </mxCell>
+
+        <!-- HDX协议标识图标 -->
+        <mxCell id="hdx" value="HDX 传输协议" style="mxstencil=Citrix;stencil=HDX Logo;whiteSpace=wrap;html=1;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="720" y="620" width="145" height="78" as="geometry"/>
+        </mxCell>
+
+        <!-- 辅助AD域控（通用服务器） -->
+        <mxCell id="ad" value="AD 域控制器" style="shape=server;whiteSpace=wrap;html=1;fillColor=#eeeeee;strokeColor=#666666;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="665" y="300" width="142" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- 连线：DDC ↔ StoreFront 资源查询 -->
+        <mxCell id="e1" value="资源查询" style="endArrow=block;strokeWidth=1.8;html=1" edge="1" parent="1" source="ddc" target="sf">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- DDC 会话调度到VDA -->
+        <mxCell id="e2" value="会话调度" style="endArrow=block;strokeWidth=1.8;html=1" edge="1" parent="1" source="ddc" target="vda1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" value="会话调度" style="endArrow=block;strokeWidth=1.8;html=1" edge="1" parent="1" source="ddc" target="vda2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- StoreFront → AD 域认证 -->
+        <mxCell id="e4" value="域身份认证" style="endArrow=block;strokeWidth=1.8;html=1" edge="1" parent="1" source="sf" target="ad">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- StoreFront ↔ 云连接器 云端同步虚线 -->
+        <mxCell id="e5" value="云端同步" style="endArrow=block;strokeWidth=1.8;dashed=1;html=1" edge="1" parent="1" source="sf" target="connector">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- NetScaler ↔ Workspace ICA/HDX会话 -->
+        <mxCell id="e6" value="ICA/HDX会话链路" style="endArrow=block;strokeWidth=1.8;html=1" edge="1" parent="1" source="nsg" target="workspace">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Workspace 关联HDX协议 -->
+        <mxCell id="e7" value="协议承载" style="endArrow=block;strokeWidth=1.5;dashed=1;html=1" edge="1" parent="1" source="workspace" target="hdx">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
